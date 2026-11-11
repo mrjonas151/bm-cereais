@@ -1,0 +1,97 @@
+/* Shared reading scale. Layout-specific sizing stays in style.css. */
+:root{--text-body:16px;--text-small:14px;--text-label:11px;--muted:#65705f}
+body{font-size:var(--text-body);line-height:1.6}
+nav{gap:25px;margin-left:15px}
+nav a,.header-contact{font-size:14px}
+.eyebrow,.hero .eyebrow,.heritage-card>.eyebrow,.purpose-intro .eyebrow,.purpose-grid .eyebrow,.contact .eyebrow{font-size:11px;letter-spacing:1.3px}
+.section-tag,.photo-caption,.service-visual-top,.service-visual-bottom .eyebrow,.crops-footnote>span{font-size:10px;letter-spacing:1.2px}
+.hero-content>p{font-size:18px;line-height:1.8}
+.button,.hero-secondary,.text-link,.service-body .text-link{font-size:14px}
+.hero-coordinate{font-size:11px}
+.hero-coordinate small,.hero-year,.scroll-hint{font-size:9px;letter-spacing:1px}
+.hero-side{font-size:9px;letter-spacing:2px}
+.credentials .container>div,.credentials a{font-size:14px}
+.credentials .container{gap:16px}
+.about-heading .lead{font-size:20px;line-height:1.65}
+.about-heading p:not(.lead),.heritage-card>p,.solutions-heading>p,.cereals-heading>p,.service-body p,.purpose-grid p,.location-content>p,.contact-copy>p{font-size:16px;line-height:1.8}
+.heritage-card>p{max-width:none}
+.heritage-card h3{font-size:22px}
+.about-photo{height:100%;min-height:440px}
+.heritage-card{overflow:visible}
+.signature{font-size:14px;gap:15px;flex-wrap:wrap}
+.signature span{font-size:10px;letter-spacing:.7px}
+.service-number,.service-counter,.crop-index{font-size:12px}
+.crop-card p{display:block;font-size:13px;line-height:1.6}
+.crop-card-bottom{gap:10px}
+.crop-card-bottom>div{min-width:0}
+.round-arrow{flex-shrink:0}
+.crops-footnote p{font-size:14px}
+.purpose-grid h3{font-size:25px}
+.location-tabs button{font-size:16px}
+.location-tabs button span{font-size:10px}
+.unit-info h3{font-size:17px}
+.unit-info p{font-size:15px;max-width:none}
+.unit-info a{font-size:14px}
+.unit-whatsapp{gap:14px}
+.unit-whatsapp a{font-size:14px}
+.map-top,.map-bottom>span{font-size:10px;letter-spacing:.7px}
+.map-unit-label{font-size:12px;padding:10px 12px}
+.map-unit-label small{font-size:9px;letter-spacing:.7px}
+.contact-channel>span:nth-child(2){font-size:10px}
+.contact-channel b{font-size:16px;overflow-wrap:anywhere}
+.contact-signature p{font-size:13px}
+.contact-channel,.whatsapp-contacts,.contact-socials{max-width:none}
+.whatsapp-heading h3,.whatsapp-unit h4{font-size:16px}
+.whatsapp-unit h4>span{font-size:10px}
+.whatsapp-unit>a{font-size:15px;gap:8px}
+.contact-socials>span{font-size:10px}
+.contact-socials>a{font-size:15px}
+.contact-form label{font-size:14px}
+.contact-form input,.contact-form select,.contact-form textarea{font-size:16px;line-height:1.6;padding:14px 12px}
+.form-heading h3{font-size:18px}
+.contact-form .button{font-size:15px}
+.form-note{font-size:12px;line-height:1.7}
+.footer-nav{font-size:14px;gap:25px;flex-wrap:wrap}
+.footer-bottom,.footer-bottom button{font-size:12px}
+.footer-bottom>span:nth-child(2),.back-top{font-size:10px}
+.dialog>p{font-size:16px}
+.dialog pre{font-size:14px}
+.copy-button{font-size:14px}
+.dialog .dialog-note,.dialog #copy-status{font-size:12px}
+@media(min-width:901px) and (max-width:1150px){
+ nav{gap:16px;margin-left:0}nav a{font-size:13px}.header-contact{font-size:13px;gap:15px;padding:12px}
+ .header-inner{gap:20px}.credentials a{display:none}.credentials .container>div{font-size:13px}
+ .crop-card p{font-size:12px}.crop-card-bottom{align-items:start}.crop-card{padding-inline:16px}
+ .whatsapp-units{grid-template-columns:1fr;gap:20px}.whatsapp-unit>a{justify-content:flex-start;gap:25px}
+ .map-top,.map-bottom>span{font-size:9px}.map-unit-label{font-size:10px;padding:8px}.map-unit-label small{font-size:8px}
+}
+@media(max-width:900px){
+ nav{gap:15px;margin-left:0}nav a{font-size:27px}
+ .header-contact{font-size:12px;gap:13px;padding:12px 14px}.header-inner{gap:15px}
+ .hero-content{padding-top:180px}.hero .eyebrow{max-width:360px;font-size:10px;letter-spacing:1px}
+ .hero-content>p{font-size:16px;max-width:440px}.hero-actions{gap:22px;flex-wrap:wrap}
+ .hero-actions .button{font-size:13px;padding:17px}.hero-secondary{font-size:13px}
+ .hero-coordinate{font-size:10px}.hero-coordinate small{font-size:8px;max-width:240px;line-height:1.6}
+ .credentials .container{padding-block:22px;gap:13px}.credentials .container>div{font-size:12px;line-height:1.6}.credentials .icon{width:28px;height:28px}
+ .eyebrow,.purpose-intro .eyebrow,.purpose-grid .eyebrow,.contact .eyebrow{font-size:10px;letter-spacing:1px}
+ .about-heading .lead{font-size:19px}.about-heading p:not(.lead),.heritage-card>p,.solutions-heading>p,.cereals-heading>p,.service-body p,.purpose-grid p,.location-content>p,.contact-copy>p{font-size:16px}
+ .about-photo{height:320px;min-height:0}.text-link,.service-body .text-link{font-size:14px}
+ .photo-caption{font-size:10px;letter-spacing:.7px;gap:15px}.signature span{font-size:10px}
+ .crop-card p{font-size:12px}.crop-card-bottom{align-items:start}.crop-grid{gap:12px}.crop-card{padding:17px 14px}
+ .crops-footnote{align-items:center;flex-wrap:wrap;gap:14px}.crops-footnote>span{font-size:10px}.crops-footnote p{font-size:13px;max-width:none;text-align:left}
+ .purpose-grid h3{font-size:24px}.purpose-grid article{column-gap:13px}
+ .map-top,.map-bottom>span{font-size:9px;letter-spacing:.5px}.map-unit-label{font-size:10px;padding:8px}.map-unit-label small{font-size:8px}
+ .whatsapp-units{grid-template-columns:1fr;gap:24px}.whatsapp-unit>a{font-size:16px;justify-content:space-between;padding-block:11px}.whatsapp-heading h3{font-size:16px}
+ .contact-channel b{font-size:15px}.form-heading h3{font-size:18px}.contact-form label{font-size:14px}.contact-form input,.contact-form select,.contact-form textarea{font-size:16px}
+ .contact-form .button{font-size:14px}.form-note{font-size:12px}
+ .footer-main>p{font-size:16px}.footer-nav{font-size:14px;gap:20px}.footer-bottom,.footer-bottom button{font-size:12px}.footer-bottom{align-items:start}
+}
+@media(max-width:370px){
+ .logo{width:80px}.header-inner{gap:12px}.header-contact{font-size:11px;padding:11px 10px;gap:8px}
+ .hero-content{padding-top:165px}.hero-actions{gap:18px}.hero-actions .button{font-size:12px;padding:15px 13px;gap:13px}.hero-secondary{font-size:12px}
+ .hero .eyebrow{font-size:9px}.hero-coordinate small{font-size:7px;max-width:210px}
+ .credentials .container>div{font-size:11px}.credentials .container{gap:9px}
+ .crop-card p{font-size:12px}.crop-card-bottom{flex-wrap:wrap;gap:12px}.crop-card h3{font-size:23px}
+ .contact-channel b{font-size:14px}.footer-main{gap:20px}.footer-main>p{font-size:15px;margin-left:0}
+ .map-top{font-size:8px}.map-unit-label{font-size:9px;padding:6px}.map-unit-label small{font-size:7px}
+}

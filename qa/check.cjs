@@ -1,0 +1,33 @@
+const {chromium}=require('C:/Users/jonas/AppData/Local/Temp/bm-cereais-browser-check/node_modules/playwright');
+const assert=require('node:assert/strict');
+const path=require('node:path');
+(async()=>{
+ const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+ const page=await browser.newPage({viewport:{width:1440,height:1080},reducedMotion:'reduce'});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`)});
+ await page.goto('http://127.0.0.1:8081',{waitUntil:'networkidle'});await page.evaluate(()=>document.fonts.ready);
+ assert.equal(await page.title(),'BM Cereais — Raízes no campo. Olhar no futuro.');
+ assert.equal(await page.locator('h1').count(),1);
+ await page.locator('img').evaluateAll(async imgs=>{imgs.forEach(img=>img.loading='eager');await Promise.all(imgs.map(img=>img.decode()))});
+ assert.equal(await page.locator('img').evaluateAll(imgs=>imgs.every(img=>img.complete&&img.naturalWidth>0)),true);
+ await page.screenshot({path:path.join(__dirname,'desktop-full.png'),fullPage:true});
+ await page.locator('#sobre').screenshot({path:path.join(__dirname,'about.png')});
+ await page.locator('[data-service="1"]').click();assert.equal(await page.locator('#service-2').isVisible(),true);assert.equal(await page.locator('#service-1').isVisible(),false);assert.equal(await page.locator('#service-current').textContent(),'02');
+ await page.locator('[data-service="2"]').click();assert.equal(await page.locator('#service-3').isVisible(),true);
+ await page.locator('#tab-descalvado').click();assert.equal(await page.locator('#unit-name').textContent(),'Descalvado, São Paulo');
+ await page.locator('#tab-descalvado').press('ArrowLeft');assert.equal(await page.locator('#tab-itabera').getAttribute('aria-selected'),'true');
+ await page.locator('#unidades').screenshot({path:path.join(__dirname,'units.png')});
+ await page.locator('[data-interest="Milho"]').click();assert.equal(await page.locator('#interest').inputValue(),'Milho');
+ await page.locator('#name').fill('Teste de navegação');await page.locator('#email').fill('teste@example.com');await page.locator('#message').fill('Gostaria de conversar sobre a comercialização de milho.');
+ await page.getByRole('button',{name:'Preparar minha mensagem'}).click();assert.equal(await page.locator('#message-dialog').isVisible(),true);assert.match(await page.locator('#message-preview').textContent(),/Assunto: Milho/);assert.match(await page.locator('#email-draft').getAttribute('href'),/^mailto:bmcereais/);
+ await page.keyboard.press('Escape');assert.equal(await page.locator('#message-dialog').isVisible(),false);
+ await page.getByRole('button',{name:'Privacidade',exact:true}).click();assert.equal(await page.locator('#privacy-dialog').isVisible(),true);await page.keyboard.press('Escape');
+ for(const width of [1440,1024,768,390,320]){await page.setViewportSize({width,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),true,`overflow at ${width}`)}
+ await page.setViewportSize({width:390,height:844});await page.goto('http://127.0.0.1:8081',{waitUntil:'networkidle'});
+ await page.screenshot({path:path.join(__dirname,'mobile.png')});await page.screenshot({path:path.join(__dirname,'mobile-full.png'),fullPage:true});
+ await page.locator('.menu-toggle').click();assert.equal(await page.locator('.menu-toggle').getAttribute('aria-expanded'),'true');for(let i=0;i<8;i++){await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.matches('.menu-toggle,#navigation a')),true)}await page.getByRole('navigation').getByRole('link',{name:'Nossos cereais'}).click();assert.equal(await page.locator('.menu-toggle').getAttribute('aria-expanded'),'false');
+ await page.locator('#cereais').screenshot({path:path.join(__dirname,'mobile-crops.png')});
+ await page.locator('#contato').screenshot({path:path.join(__dirname,'mobile-contact.png')});
+ assert.deepEqual(errors,[]);console.log('PASS: desktop e celular; 5 larguras sem overflow; imagens; serviços; abas e teclado; formulário, e-mail e diálogos; menu móvel; nenhum erro no navegador.');
+ await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});
